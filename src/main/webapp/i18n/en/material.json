@@ -1,0 +1,36 @@
+{
+  "reparacionesApp": {
+    "material": {
+      "home": {
+        "title": "Materials",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Material",
+        "createOrEditLabel": "Create or edit a Material",
+        "notFound": "No Materials found"
+      },
+      "created": "A new Material is created with identifier {{ param }}",
+      "updated": "A Material is updated with identifier {{ param }}",
+      "deleted": "A Material is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Material {{ id }}?"
+      },
+      "detail": {
+        "title": "Material"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "nombre": "Nombre",
+      "valorUnitario": "Valor Unitario",
+      "stock": "Stock",
+      "activo": "Activo",
+      "descripcion": "Descripcion",
+      "creadoPor": "Creado Por",
+      "fechaCreacion": "Fecha Creacion",
+      "actualizadoPor": "Actualizado Por",
+      "fechaModificacion": "Fecha Modificacion",
+      "categoria": "Categoria",
+      "materialDanio": "Material Danio",
+      "materialReporteControl": "Material Reporte Control"
+    }
+  }
+}

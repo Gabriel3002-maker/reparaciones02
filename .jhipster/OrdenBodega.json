@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240226153524"
+  },
+  "applications": "*",
+  "entityTableName": "orden_bodega",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "detalleNecesidad",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "OrdenBodega",
+  "relationships": [
+    {
+      "otherEntityField": "identificacion",
+      "otherEntityName": "persona",
+      "relationshipName": "receptor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

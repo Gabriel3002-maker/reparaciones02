@@ -1,0 +1,43 @@
+{
+  "reparacionesApp": {
+    "persona": {
+      "home": {
+        "title": "Personas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Persona",
+        "createOrEditLabel": "Create or edit a Persona",
+        "notFound": "No Personas found"
+      },
+      "created": "A new Persona is created with identifier {{ param }}",
+      "updated": "A Persona is updated with identifier {{ param }}",
+      "deleted": "A Persona is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Persona {{ id }}?"
+      },
+      "detail": {
+        "title": "Persona"
+      },
+      "id": "ID",
+      "identificacion": "Identificacion",
+      "primerApellido": "Primer Apellido",
+      "segundoApellido": "Segundo Apellido",
+      "primerNombre": "Primer Nombre",
+      "segundoNombre": "Segundo Nombre",
+      "celular": "Celular",
+      "telefonoConvencional": "Telefono Convencional",
+      "correo": "Correo",
+      "tipoIdentificacion": "Tipo Identificacion",
+      "usuario": "Usuario",
+      "help": {
+        "identificacion": "identificacion",
+        "primerApellido": "primer apellido",
+        "segundoApellido": "segundo apellido",
+        "primerNombre": "primer Nombre",
+        "segundoNombre": "segundo Nombre",
+        "celular": "celular",
+        "telefonoConvencional": "telefono convencional",
+        "correo": "correo"
+      }
+    }
+  }
+}

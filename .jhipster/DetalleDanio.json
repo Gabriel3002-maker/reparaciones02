@@ -1,0 +1,78 @@
+{
+  "annotations": {
+    "changelogDate": "20240226152924"
+  },
+  "applications": "*",
+  "entityTableName": "detalle_danio",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcionDanio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tecnico",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "namePerson",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoReparacion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observacion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DetalleDanio",
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "catalogoItem",
+      "relationshipName": "tipoDanio",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "materialDanio",
+      "relationshipName": "materialDanio",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "machinery",
+      "relationshipName": "maquinaria",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "ordenBodega",
+      "relationshipName": "ordenBodega",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "detalleReporteDanio",
+      "relationshipName": "detalleReporteDanio",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

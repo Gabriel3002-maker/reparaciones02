@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20240226153424"
+  },
+  "applications": "*",
+  "entityTableName": "material",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valorUnitario",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "creadoPor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaCreacion",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "actualizadoPor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaModificacion",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Material",
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "catalogoItem",
+      "relationshipName": "categoria",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

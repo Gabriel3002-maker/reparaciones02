@@ -1,0 +1,39 @@
+{
+  "reparacionesApp": {
+    "funcionalidad": {
+      "home": {
+        "title": "Funcionalidads",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Funcionalidad",
+        "createOrEditLabel": "Crear o editar Funcionalidad",
+        "notFound": "Ningún Funcionalidads encontrado"
+      },
+      "created": "Un nuevo Funcionalidad ha sido creado con el identificador {{ param }}",
+      "updated": "Un Funcionalidad ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Funcionalidad ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Funcionalidad {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcionalidad"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "url": "Url",
+      "activo": "Activo",
+      "icono": "Icono",
+      "visible": "Visible",
+      "hijos": "Hijos",
+      "padre": "Padre",
+      "help": {
+        "nombre": "nombre",
+        "descripcion": "descripcion",
+        "url": "url",
+        "activo": "activo",
+        "icono": "icono menu",
+        "visible": "visible"
+      }
+    }
+  }
+}

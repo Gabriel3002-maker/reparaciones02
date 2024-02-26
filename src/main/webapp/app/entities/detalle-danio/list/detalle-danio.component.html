@@ -1,0 +1,201 @@
+<div>
+  <h2 id="page-heading" data-cy="DetalleDanioHeading">
+    <span jhiTranslate="reparacionesApp.detalleDanio.home.title">Detalle Danios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.detalleDanio.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-detalle-danio"
+        [routerLink]="['/detalle-danio/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.detalleDanio.home.createLabel">Crear nuevo Detalle Danio</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (detalleDanios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.detalleDanio.home.notFound">Ningún Detalle Danios encontrado</span>
+    </div>
+  }
+
+  @if (detalleDanios && detalleDanios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.codigo">Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcionDanio">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.descripcionDanio">Descripcion Danio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tecnico">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.tecnico">Tecnico</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="namePerson">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.namePerson">Name Person</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direccion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.direccion">Direccion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estadoReparacion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.estadoReparacion">Estado Reparacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observacion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.observacion">Observacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoDanio.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.tipoDanio">Tipo Danio</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="materialDanio.codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.materialDanio">Material Danio</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maquinaria.codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.maquinaria">Maquinaria</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordenBodega.codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.ordenBodega">Orden Bodega</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detalleReporteDanio.codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.detalleDanio.detalleReporteDanio">Detalle Reporte Danio</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (detalleDanio of detalleDanios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/detalle-danio', detalleDanio.id, 'view']">{{ detalleDanio.id }}</a>
+              </td>
+              <td>{{ detalleDanio.codigo }}</td>
+              <td>{{ detalleDanio.descripcionDanio }}</td>
+              <td>{{ detalleDanio.tecnico }}</td>
+              <td>{{ detalleDanio.namePerson }}</td>
+              <td>{{ detalleDanio.direccion }}</td>
+              <td>{{ detalleDanio.estadoReparacion }}</td>
+              <td>{{ detalleDanio.observacion }}</td>
+              <td>
+                @if (detalleDanio.tipoDanio) {
+                  <div>
+                    <a [routerLink]="['/catalogo-item', detalleDanio.tipoDanio.id, 'view']">{{ detalleDanio.tipoDanio.nombre }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (detalleDanio.materialDanio) {
+                  <div>
+                    <a [routerLink]="['/material-danio', detalleDanio.materialDanio.id, 'view']">{{ detalleDanio.materialDanio.codigo }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (detalleDanio.maquinaria) {
+                  <div>
+                    <a [routerLink]="['/machinery', detalleDanio.maquinaria.id, 'view']">{{ detalleDanio.maquinaria.codigo }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (detalleDanio.ordenBodega) {
+                  <div>
+                    <a [routerLink]="['/orden-bodega', detalleDanio.ordenBodega.id, 'view']">{{ detalleDanio.ordenBodega.codigo }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (detalleDanio.detalleReporteDanio) {
+                  <div>
+                    <a [routerLink]="['/detalle-reporte-danio', detalleDanio.detalleReporteDanio.id, 'view']">{{
+                      detalleDanio.detalleReporteDanio.codigo
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/detalle-danio', detalleDanio.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/detalle-danio', detalleDanio.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(detalleDanio)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

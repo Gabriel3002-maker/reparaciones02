@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20240226153224"
+  },
+  "applications": "*",
+  "entityTableName": "detalle_reporte_danio",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "contribuyente",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "referencia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "horasTrabajadas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "personalResponsable",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DetalleReporteDanio",
+  "relationships": [
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "materialReporteControl",
+      "relationshipName": "materialReporte",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (machinery) {
+      <div>
+        <h2 data-cy="machineryDetailsHeading"><span jhiTranslate="reparacionesApp.machinery.detail.title">Machinery</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ machinery.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.machinery.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ machinery.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.machinery.descripcion">Descripcion</span></dt>
+          <dd>
+            <span>{{ machinery.descripcion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.machinery.horasTrabajadas">Horas Trabajadas</span></dt>
+          <dd>
+            <span>{{ machinery.horasTrabajadas }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.machinery.nombre">Nombre</span></dt>
+          <dd>
+            @if (machinery.nombre) {
+              <div>
+                <a [routerLink]="['/catalogo-item', machinery.nombre.id, 'view']">{{ machinery.nombre.nombre }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/machinery', machinery.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

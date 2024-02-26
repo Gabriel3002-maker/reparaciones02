@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240226152424"
+  },
+  "applications": "*",
+  "documentation": "The Catalogo entity.\\n@author Usuario",
+  "entityTableName": "catalogo",
+  "fields": [
+    {
+      "documentation": "nombre",
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "codigo",
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "documentation": "descripcion",
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Catalogo",
+  "relationships": [
+    {
+      "otherEntityName": "catalogoItem",
+      "relationshipName": "items",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

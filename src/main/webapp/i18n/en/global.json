@@ -7,7 +7,21 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "persona": "Persona",
+        "funcionalidad": "Funcionalidad",
+        "catalogo": "Catalogo",
+        "catalogoItem": "Catalogo Item",
+        "parametroSistema": "Parametro Sistema",
+        "rolFuncionalidad": "Rol Funcionalidad",
+        "registroDanio": "Registro Danio",
+        "detalleDanio": "Detalle Danio",
+        "materialDanio": "Material Danio",
+        "machinery": "Machinery",
+        "detalleReporteDanio": "Detalle Reporte Danio",
+        "materialReporteControl": "Material Reporte Control",
+        "material": "Material",
+        "ordenBodega": "Orden Bodega"
       },
       "account": {
         "main": "Account",

@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-detalle-reporte-danio-heading"
+        data-cy="DetalleReporteDanioCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.detalleReporteDanio.home.createOrEditLabel"
+      >
+        Crear o editar Detalle Reporte Danio
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.codigo" for="field_codigo">Codigo</label>
+          <input type="number" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.fecha" for="field_fecha">Fecha</label>
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.contribuyente" for="field_contribuyente"
+            >Contribuyente</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contribuyente"
+            id="field_contribuyente"
+            data-cy="contribuyente"
+            formControlName="contribuyente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.direccion" for="field_direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.referencia" for="field_referencia">Referencia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="referencia"
+            id="field_referencia"
+            data-cy="referencia"
+            formControlName="referencia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.horasTrabajadas" for="field_horasTrabajadas"
+            >Horas Trabajadas</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="horasTrabajadas"
+            id="field_horasTrabajadas"
+            data-cy="horasTrabajadas"
+            formControlName="horasTrabajadas"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.personalResponsable" for="field_personalResponsable"
+            >Personal Responsable</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="personalResponsable"
+            id="field_personalResponsable"
+            data-cy="personalResponsable"
+            formControlName="personalResponsable"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleReporteDanio.materialReporte" for="field_materialReporte"
+            >Material Reporte</label
+          >
+          <select
+            class="form-control"
+            id="field_materialReporte"
+            data-cy="materialReporte"
+            name="materialReporte"
+            formControlName="materialReporte"
+            [compareWith]="compareMaterialReporteControl"
+          >
+            <option [ngValue]="null"></option>
+            @for (materialReporteControlOption of materialReporteControlsSharedCollection; track $index) {
+              <option [ngValue]="materialReporteControlOption">{{ materialReporteControlOption.codigo }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "reparacionesApp": {
+    "ordenBodega": {
+      "home": {
+        "title": "Orden Bodegas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Orden Bodega",
+        "createOrEditLabel": "Crear o editar Orden Bodega",
+        "notFound": "Ningún Orden Bodegas encontrado"
+      },
+      "created": "Un nuevo Orden Bodega ha sido creado con el identificador {{ param }}",
+      "updated": "Un Orden Bodega ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Orden Bodega ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Orden Bodega {{ id }}?"
+      },
+      "detail": {
+        "title": "Orden Bodega"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "detalleNecesidad": "Detalle Necesidad",
+      "fecha": "Fecha",
+      "receptor": "Receptor"
+    }
+  }
+}

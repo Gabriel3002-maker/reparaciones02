@@ -1,0 +1,27 @@
+{
+  "reparacionesApp": {
+    "materialReporteControl": {
+      "home": {
+        "title": "Material Reporte Controls",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Material Reporte Control",
+        "createOrEditLabel": "Crear o editar Material Reporte Control",
+        "notFound": "Ningún Material Reporte Controls encontrado"
+      },
+      "created": "Un nuevo Material Reporte Control ha sido creado con el identificador {{ param }}",
+      "updated": "Un Material Reporte Control ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Material Reporte Control ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Material Reporte Control {{ id }}?"
+      },
+      "detail": {
+        "title": "Material Reporte Control"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "cantidadUsada": "Cantidad Usada",
+      "observacion": "Observacion",
+      "materiales": "Materiales"
+    }
+  }
+}

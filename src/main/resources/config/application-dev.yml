@@ -44,7 +44,7 @@ spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/reparaciones
     username: reparaciones
-    password:
+    password: reparaciones2024
   thymeleaf:
     cache: false
 

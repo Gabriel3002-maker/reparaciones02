@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-orden-bodega-heading"
+        data-cy="OrdenBodegaCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.ordenBodega.home.createOrEditLabel"
+      >
+        Crear o editar Orden Bodega
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.ordenBodega.codigo" for="field_codigo">Codigo</label>
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.ordenBodega.detalleNecesidad" for="field_detalleNecesidad"
+            >Detalle Necesidad</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="detalleNecesidad"
+            id="field_detalleNecesidad"
+            data-cy="detalleNecesidad"
+            formControlName="detalleNecesidad"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.ordenBodega.fecha" for="field_fecha">Fecha</label>
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.ordenBodega.receptor" for="field_receptor">Receptor</label>
+          <select
+            class="form-control"
+            id="field_receptor"
+            data-cy="receptor"
+            name="receptor"
+            formControlName="receptor"
+            [compareWith]="comparePersona"
+          >
+            <option [ngValue]="null"></option>
+            @for (personaOption of personasSharedCollection; track $index) {
+              <option [ngValue]="personaOption">{{ personaOption.identificacion }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (material) {
+      <div>
+        <h2 data-cy="materialDetailsHeading"><span jhiTranslate="reparacionesApp.material.detail.title">Material</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ material.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ material.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ material.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.valorUnitario">Valor Unitario</span></dt>
+          <dd>
+            <span>{{ material.valorUnitario }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.stock">Stock</span></dt>
+          <dd>
+            <span>{{ material.stock }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.activo">Activo</span></dt>
+          <dd>
+            <span>{{ material.activo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.descripcion">Descripcion</span></dt>
+          <dd>
+            <span>{{ material.descripcion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.creadoPor">Creado Por</span></dt>
+          <dd>
+            <span>{{ material.creadoPor }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.fechaCreacion">Fecha Creacion</span></dt>
+          <dd>
+            <span>{{ material.fechaCreacion | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.actualizadoPor">Actualizado Por</span></dt>
+          <dd>
+            <span>{{ material.actualizadoPor }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.fechaModificacion">Fecha Modificacion</span></dt>
+          <dd>
+            <span>{{ material.fechaModificacion | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.categoria">Categoria</span></dt>
+          <dd>
+            @if (material.categoria) {
+              <div>
+                <a [routerLink]="['/catalogo-item', material.categoria.id, 'view']">{{ material.categoria.nombre }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.materialDanio">Material Danio</span></dt>
+          <dd>
+            @if (material.materialDanio) {
+              <div>
+                <a [routerLink]="['/material-danio', material.materialDanio.id, 'view']">{{ material.materialDanio.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.material.materialReporteControl">Material Reporte Control</span></dt>
+          <dd>
+            @if (material.materialReporteControl) {
+              <div>
+                <a [routerLink]="['/material-reporte-control', material.materialReporteControl.id, 'view']">{{
+                  material.materialReporteControl.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/material', material.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

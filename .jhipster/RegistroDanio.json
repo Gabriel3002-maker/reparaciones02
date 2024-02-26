@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20240226152824"
+  },
+  "applications": "*",
+  "entityTableName": "registro_danio",
+  "fields": [
+    {
+      "documentation": "codigo",
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "fecha registro",
+      "fieldName": "fecha",
+      "fieldType": "LocalDate"
+    },
+    {
+      "documentation": "fecha inicio",
+      "fieldName": "fechaInicio",
+      "fieldType": "LocalDate"
+    },
+    {
+      "documentation": "fecha fin",
+      "fieldName": "fechaFin",
+      "fieldType": "LocalDate"
+    },
+    {
+      "documentation": "direccion",
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "parroquia",
+      "fieldName": "parroquia",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "barrio",
+      "fieldName": "barrio",
+      "fieldType": "String"
+    }
+  ],
+  "name": "RegistroDanio",
+  "relationships": [
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "detalleDanio",
+      "relationshipName": "detalleDanio",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

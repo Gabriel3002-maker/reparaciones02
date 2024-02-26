@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="ParametroSistemaHeading">
+    <span jhiTranslate="reparacionesApp.parametroSistema.home.title">Parametro Sistemas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.parametroSistema.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parametro-sistema"
+        [routerLink]="['/parametro-sistema/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.parametroSistema.home.createLabel">Crear nuevo Parametro Sistema</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (parametroSistemas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.parametroSistema.home.notFound">Ningún Parametro Sistemas encontrado</span>
+    </div>
+  }
+
+  @if (parametroSistemas && parametroSistemas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.parametroSistema.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.parametroSistema.codigo">Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clase">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.parametroSistema.clase">Clase</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valor">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.parametroSistema.valor">Valor</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (parametroSistema of parametroSistemas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/parametro-sistema', parametroSistema.id, 'view']">{{ parametroSistema.id }}</a>
+              </td>
+              <td>{{ parametroSistema.nombre }}</td>
+              <td>{{ parametroSistema.codigo }}</td>
+              <td>{{ parametroSistema.clase }}</td>
+              <td>{{ parametroSistema.valor }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/parametro-sistema', parametroSistema.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/parametro-sistema', parametroSistema.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(parametroSistema)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

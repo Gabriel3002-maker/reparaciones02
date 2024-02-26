@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (registroDanio) {
+      <div>
+        <h2 data-cy="registroDanioDetailsHeading"><span jhiTranslate="reparacionesApp.registroDanio.detail.title">Registro Danio</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ registroDanio.id }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.registroDanio.codigo" [ngbTooltip]="'reparacionesApp.registroDanio.help.codigo' | translate"
+              >Codigo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.codigo }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.registroDanio.fecha" [ngbTooltip]="'reparacionesApp.registroDanio.help.fecha' | translate"
+              >Fecha</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.fecha | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.registroDanio.fechaInicio"
+              [ngbTooltip]="'reparacionesApp.registroDanio.help.fechaInicio' | translate"
+              >Fecha Inicio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.fechaInicio | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.registroDanio.fechaFin"
+              [ngbTooltip]="'reparacionesApp.registroDanio.help.fechaFin' | translate"
+              >Fecha Fin</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.fechaFin | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.registroDanio.direccion"
+              [ngbTooltip]="'reparacionesApp.registroDanio.help.direccion' | translate"
+              >Direccion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.direccion }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.registroDanio.parroquia"
+              [ngbTooltip]="'reparacionesApp.registroDanio.help.parroquia' | translate"
+              >Parroquia</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.parroquia }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.registroDanio.barrio" [ngbTooltip]="'reparacionesApp.registroDanio.help.barrio' | translate"
+              >Barrio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ registroDanio.barrio }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.registroDanio.detalleDanio">Detalle Danio</span></dt>
+          <dd>
+            @if (registroDanio.detalleDanio) {
+              <div>
+                <a [routerLink]="['/detalle-danio', registroDanio.detalleDanio.id, 'view']">{{ registroDanio.detalleDanio.codigo }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/registro-danio', registroDanio.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

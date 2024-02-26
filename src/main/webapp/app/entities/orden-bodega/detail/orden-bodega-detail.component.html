@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ordenBodega) {
+      <div>
+        <h2 data-cy="ordenBodegaDetailsHeading"><span jhiTranslate="reparacionesApp.ordenBodega.detail.title">Orden Bodega</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ ordenBodega.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.ordenBodega.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ ordenBodega.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.ordenBodega.detalleNecesidad">Detalle Necesidad</span></dt>
+          <dd>
+            <span>{{ ordenBodega.detalleNecesidad }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.ordenBodega.fecha">Fecha</span></dt>
+          <dd>
+            <span>{{ ordenBodega.fecha | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.ordenBodega.receptor">Receptor</span></dt>
+          <dd>
+            @if (ordenBodega.receptor) {
+              <div>
+                <a [routerLink]="['/persona', ordenBodega.receptor.id, 'view']">{{ ordenBodega.receptor.identificacion }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/orden-bodega', ordenBodega.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

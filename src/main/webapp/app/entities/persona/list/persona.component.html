@@ -1,0 +1,164 @@
+<div>
+  <h2 id="page-heading" data-cy="PersonaHeading">
+    <span jhiTranslate="reparacionesApp.persona.home.title">Personas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.persona.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-persona"
+        [routerLink]="['/persona/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.persona.home.createLabel">Crear nuevo Persona</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (personas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.persona.home.notFound">Ningún Personas encontrado</span>
+    </div>
+  }
+
+  @if (personas && personas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identificacion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.identificacion">Identificacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="primerApellido">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.primerApellido">Primer Apellido</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="segundoApellido">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.segundoApellido">Segundo Apellido</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="primerNombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.primerNombre">Primer Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="segundoNombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.segundoNombre">Segundo Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="celular">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.celular">Celular</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefonoConvencional">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.telefonoConvencional">Telefono Convencional</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="correo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.correo">Correo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoIdentificacion.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.tipoIdentificacion">Tipo Identificacion</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuario.login">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.persona.usuario">Usuario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (persona of personas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/persona', persona.id, 'view']">{{ persona.id }}</a>
+              </td>
+              <td>{{ persona.identificacion }}</td>
+              <td>{{ persona.primerApellido }}</td>
+              <td>{{ persona.segundoApellido }}</td>
+              <td>{{ persona.primerNombre }}</td>
+              <td>{{ persona.segundoNombre }}</td>
+              <td>{{ persona.celular }}</td>
+              <td>{{ persona.telefonoConvencional }}</td>
+              <td>{{ persona.correo }}</td>
+              <td>
+                @if (persona.tipoIdentificacion) {
+                  <div>
+                    <a [routerLink]="['/catalogo-item', persona.tipoIdentificacion.id, 'view']">{{ persona.tipoIdentificacion.nombre }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                {{ persona.usuario?.login }}
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/persona', persona.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/persona', persona.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(persona)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

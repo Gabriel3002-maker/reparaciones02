@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (materialReporteControl) {
+      <div>
+        <h2 data-cy="materialReporteControlDetailsHeading">
+          <span jhiTranslate="reparacionesApp.materialReporteControl.detail.title">Material Reporte Control</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ materialReporteControl.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialReporteControl.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ materialReporteControl.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialReporteControl.cantidadUsada">Cantidad Usada</span></dt>
+          <dd>
+            <span>{{ materialReporteControl.cantidadUsada }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialReporteControl.observacion">Observacion</span></dt>
+          <dd>
+            <span>{{ materialReporteControl.observacion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/material-reporte-control', materialReporteControl.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

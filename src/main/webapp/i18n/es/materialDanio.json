@@ -1,0 +1,27 @@
+{
+  "reparacionesApp": {
+    "materialDanio": {
+      "home": {
+        "title": "Material Danios",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Material Danio",
+        "createOrEditLabel": "Crear o editar Material Danio",
+        "notFound": "Ningún Material Danios encontrado"
+      },
+      "created": "Un nuevo Material Danio ha sido creado con el identificador {{ param }}",
+      "updated": "Un Material Danio ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Material Danio ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Material Danio {{ id }}?"
+      },
+      "detail": {
+        "title": "Material Danio"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "cantidadPedida": "Cantidad Pedida",
+      "observacion": "Observacion",
+      "materiales": "Materiales"
+    }
+  }
+}

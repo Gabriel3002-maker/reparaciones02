@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="MachineryHeading">
+    <span jhiTranslate="reparacionesApp.machinery.home.title">Machinery</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.machinery.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-machinery"
+        [routerLink]="['/machinery/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.machinery.home.createLabel">Crear nuevo Machinery</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (machinery?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.machinery.home.notFound">Ningún Machinery encontrado</span>
+    </div>
+  }
+
+  @if (machinery && machinery.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.machinery.codigo">Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.machinery.descripcion">Descripcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horasTrabajadas">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.machinery.horasTrabajadas">Horas Trabajadas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.machinery.nombre">Nombre</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (machinery of machinery; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/machinery', machinery.id, 'view']">{{ machinery.id }}</a>
+              </td>
+              <td>{{ machinery.codigo }}</td>
+              <td>{{ machinery.descripcion }}</td>
+              <td>{{ machinery.horasTrabajadas }}</td>
+              <td>
+                @if (machinery.nombre) {
+                  <div>
+                    <a [routerLink]="['/catalogo-item', machinery.nombre.id, 'view']">{{ machinery.nombre.nombre }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/machinery', machinery.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/machinery', machinery.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(machinery)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

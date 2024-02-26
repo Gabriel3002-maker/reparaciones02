@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240226152624"
+  },
+  "applications": "*",
+  "documentation": "The ParametroSistema entity.\\n@author Usuario",
+  "entityTableName": "parametro_sistema",
+  "fields": [
+    {
+      "documentation": "nombre",
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "codigo",
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "documentation": "clase de java",
+      "fieldName": "clase",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "valor",
+      "fieldName": "valor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ParametroSistema",
+  "relationships": [],
+  "searchEngine": "no"
+}

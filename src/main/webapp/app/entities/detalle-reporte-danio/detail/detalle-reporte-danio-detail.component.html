@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (detalleReporteDanio) {
+      <div>
+        <h2 data-cy="detalleReporteDanioDetailsHeading">
+          <span jhiTranslate="reparacionesApp.detalleReporteDanio.detail.title">Detalle Reporte Danio</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.fecha">Fecha</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.fecha | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.contribuyente">Contribuyente</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.contribuyente }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.referencia">Referencia</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.referencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.horasTrabajadas">Horas Trabajadas</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.horasTrabajadas }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.personalResponsable">Personal Responsable</span></dt>
+          <dd>
+            <span>{{ detalleReporteDanio.personalResponsable }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleReporteDanio.materialReporte">Material Reporte</span></dt>
+          <dd>
+            @if (detalleReporteDanio.materialReporte) {
+              <div>
+                <a [routerLink]="['/material-reporte-control', detalleReporteDanio.materialReporte.id, 'view']">{{
+                  detalleReporteDanio.materialReporte.codigo
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/detalle-reporte-danio', detalleReporteDanio.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

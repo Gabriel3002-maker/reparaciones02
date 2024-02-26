@@ -1,0 +1,40 @@
+{
+  "reparacionesApp": {
+    "registroDanio": {
+      "home": {
+        "title": "Registro Danios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Registro Danio",
+        "createOrEditLabel": "Create or edit a Registro Danio",
+        "notFound": "No Registro Danios found"
+      },
+      "created": "A new Registro Danio is created with identifier {{ param }}",
+      "updated": "A Registro Danio is updated with identifier {{ param }}",
+      "deleted": "A Registro Danio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Registro Danio {{ id }}?"
+      },
+      "detail": {
+        "title": "Registro Danio"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "fecha": "Fecha",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "direccion": "Direccion",
+      "parroquia": "Parroquia",
+      "barrio": "Barrio",
+      "detalleDanio": "Detalle Danio",
+      "help": {
+        "codigo": "codigo",
+        "fecha": "fecha registro",
+        "fechaInicio": "fecha inicio",
+        "fechaFin": "fecha fin",
+        "direccion": "direccion",
+        "parroquia": "parroquia",
+        "barrio": "barrio"
+      }
+    }
+  }
+}

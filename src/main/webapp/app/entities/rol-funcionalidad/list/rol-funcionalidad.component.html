@@ -1,0 +1,125 @@
+<div>
+  <h2 id="page-heading" data-cy="RolFuncionalidadHeading">
+    <span jhiTranslate="reparacionesApp.rolFuncionalidad.home.title">Rol Funcionalidads</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.rolFuncionalidad.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-rol-funcionalidad"
+        [routerLink]="['/rol-funcionalidad/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.rolFuncionalidad.home.createLabel">Crear nuevo Rol Funcionalidad</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (rolFuncionalidads?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.rolFuncionalidad.home.notFound">Ningún Rol Funcionalidads encontrado</span>
+    </div>
+  }
+
+  @if (rolFuncionalidads && rolFuncionalidads.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rol">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.rolFuncionalidad.rol">Rol</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.rolFuncionalidad.activo">Activo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prioridad">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.rolFuncionalidad.prioridad">Prioridad</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionalidad.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.rolFuncionalidad.funcionalidad">Funcionalidad</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (rolFuncionalidad of rolFuncionalidads; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/rol-funcionalidad', rolFuncionalidad.id, 'view']">{{ rolFuncionalidad.id }}</a>
+              </td>
+              <td>{{ rolFuncionalidad.rol }}</td>
+              <td>{{ rolFuncionalidad.activo }}</td>
+              <td>{{ rolFuncionalidad.prioridad }}</td>
+              <td>
+                @if (rolFuncionalidad.funcionalidad) {
+                  <div>
+                    <a [routerLink]="['/funcionalidad', rolFuncionalidad.funcionalidad.id, 'view']">{{
+                      rolFuncionalidad.funcionalidad.nombre
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/rol-funcionalidad', rolFuncionalidad.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/rol-funcionalidad', rolFuncionalidad.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(rolFuncionalidad)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

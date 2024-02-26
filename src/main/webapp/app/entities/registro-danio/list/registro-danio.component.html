@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="RegistroDanioHeading">
+    <span jhiTranslate="reparacionesApp.registroDanio.home.title">Registro Danios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.registroDanio.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-registro-danio"
+        [routerLink]="['/registro-danio/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.registroDanio.home.createLabel">Crear nuevo Registro Danio</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (registroDanios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.registroDanio.home.notFound">Ningún Registro Danios encontrado</span>
+    </div>
+  }
+
+  @if (registroDanios && registroDanios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.codigo">Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fecha">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.fecha">Fecha</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaInicio">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.fechaInicio">Fecha Inicio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaFin">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.fechaFin">Fecha Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direccion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.direccion">Direccion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="parroquia">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.parroquia">Parroquia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="barrio">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.barrio">Barrio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detalleDanio.codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.registroDanio.detalleDanio">Detalle Danio</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (registroDanio of registroDanios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/registro-danio', registroDanio.id, 'view']">{{ registroDanio.id }}</a>
+              </td>
+              <td>{{ registroDanio.codigo }}</td>
+              <td>{{ registroDanio.fecha | formatMediumDate }}</td>
+              <td>{{ registroDanio.fechaInicio | formatMediumDate }}</td>
+              <td>{{ registroDanio.fechaFin | formatMediumDate }}</td>
+              <td>{{ registroDanio.direccion }}</td>
+              <td>{{ registroDanio.parroquia }}</td>
+              <td>{{ registroDanio.barrio }}</td>
+              <td>
+                @if (registroDanio.detalleDanio) {
+                  <div>
+                    <a [routerLink]="['/detalle-danio', registroDanio.detalleDanio.id, 'view']">{{ registroDanio.detalleDanio.codigo }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/registro-danio', registroDanio.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/registro-danio', registroDanio.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(registroDanio)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

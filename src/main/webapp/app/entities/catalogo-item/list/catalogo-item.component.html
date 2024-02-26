@@ -1,0 +1,131 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogoItemHeading">
+    <span jhiTranslate="reparacionesApp.catalogoItem.home.title">Catalogo Items</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="reparacionesApp.catalogoItem.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalogo-item"
+        [routerLink]="['/catalogo-item/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="reparacionesApp.catalogoItem.home.createLabel">Crear nuevo Catalogo Item</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (catalogoItems?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="reparacionesApp.catalogoItem.home.notFound">Ningún Catalogo Items encontrado</span>
+    </div>
+  }
+
+  @if (catalogoItems && catalogoItems.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.codigo">Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcion">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.descripcion">Descripcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="catalogoCodigo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.catalogoCodigo">Catalogo Codigo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activo">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.activo">Activo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="catalogo.id">
+              <div class="d-flex">
+                <span jhiTranslate="reparacionesApp.catalogoItem.catalogo">Catalogo</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (catalogoItem of catalogoItems; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/catalogo-item', catalogoItem.id, 'view']">{{ catalogoItem.id }}</a>
+              </td>
+              <td>{{ catalogoItem.nombre }}</td>
+              <td>{{ catalogoItem.codigo }}</td>
+              <td>{{ catalogoItem.descripcion }}</td>
+              <td>{{ catalogoItem.catalogoCodigo }}</td>
+              <td>{{ catalogoItem.activo }}</td>
+              <td>
+                @if (catalogoItem.catalogo) {
+                  <div>
+                    <a [routerLink]="['/catalogo', catalogoItem.catalogo.id, 'view']">{{ catalogoItem.catalogo.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/catalogo-item', catalogoItem.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/catalogo-item', catalogoItem.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(catalogoItem)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

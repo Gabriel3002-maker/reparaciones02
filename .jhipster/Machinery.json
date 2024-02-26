@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240226153124"
+  },
+  "applications": "*",
+  "entityTableName": "machinery",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "horasTrabajadas",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "Machinery",
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "catalogoItem",
+      "relationshipName": "nombre",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

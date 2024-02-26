@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (catalogoItem) {
+      <div>
+        <h2 data-cy="catalogoItemDetailsHeading"><span jhiTranslate="reparacionesApp.catalogoItem.detail.title">Catalogo Item</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ catalogoItem.id }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.catalogoItem.nombre" [ngbTooltip]="'reparacionesApp.catalogoItem.help.nombre' | translate"
+              >Nombre</span
+            >
+          </dt>
+          <dd>
+            <span>{{ catalogoItem.nombre }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.catalogoItem.codigo" [ngbTooltip]="'reparacionesApp.catalogoItem.help.codigo' | translate"
+              >Codigo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ catalogoItem.codigo }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.catalogoItem.descripcion"
+              [ngbTooltip]="'reparacionesApp.catalogoItem.help.descripcion' | translate"
+              >Descripcion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ catalogoItem.descripcion }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.catalogoItem.catalogoCodigo"
+              [ngbTooltip]="'reparacionesApp.catalogoItem.help.catalogoCodigo' | translate"
+              >Catalogo Codigo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ catalogoItem.catalogoCodigo }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.catalogoItem.activo" [ngbTooltip]="'reparacionesApp.catalogoItem.help.activo' | translate"
+              >Activo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ catalogoItem.activo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.catalogoItem.catalogo">Catalogo</span></dt>
+          <dd>
+            @if (catalogoItem.catalogo) {
+              <div>
+                <a [routerLink]="['/catalogo', catalogoItem.catalogo.id, 'view']">{{ catalogoItem.catalogo.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/catalogo-item', catalogoItem.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,73 @@
+{
+  "annotations": {
+    "changelogDate": "20240226152224"
+  },
+  "applications": "*",
+  "documentation": "The Persona entity.\\n@author Usuario",
+  "entityTableName": "persona",
+  "fields": [
+    {
+      "documentation": "identificacion",
+      "fieldName": "identificacion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "primer apellido",
+      "fieldName": "primerApellido",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "segundo apellido",
+      "fieldName": "segundoApellido",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "primer Nombre",
+      "fieldName": "primerNombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "segundo Nombre",
+      "fieldName": "segundoNombre",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "celular",
+      "fieldName": "celular",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "telefono convencional",
+      "fieldName": "telefonoConvencional",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "correo",
+      "fieldName": "correo",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Persona",
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "catalogoItem",
+      "relationshipName": "tipoIdentificacion",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "usuario",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no"
+}

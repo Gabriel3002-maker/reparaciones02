@@ -1,0 +1,123 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-rol-funcionalidad-heading"
+        data-cy="RolFuncionalidadCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.rolFuncionalidad.home.createOrEditLabel"
+      >
+        Crear o editar Rol Funcionalidad
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.rolFuncionalidad.rol"
+            for="field_rol"
+            [ngbTooltip]="'reparacionesApp.rolFuncionalidad.help.rol' | translate"
+            >Rol</label
+          >
+          <input type="text" class="form-control" name="rol" id="field_rol" data-cy="rol" formControlName="rol" />
+          @if (editForm.get('rol')!.invalid && (editForm.get('rol')!.dirty || editForm.get('rol')!.touched)) {
+            <div>
+              @if (editForm.get('rol')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.rolFuncionalidad.activo"
+            for="field_activo"
+            [ngbTooltip]="'reparacionesApp.rolFuncionalidad.help.activo' | translate"
+            >Activo</label
+          >
+          <input type="checkbox" class="form-check" name="activo" id="field_activo" data-cy="activo" formControlName="activo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.rolFuncionalidad.prioridad"
+            for="field_prioridad"
+            [ngbTooltip]="'reparacionesApp.rolFuncionalidad.help.prioridad' | translate"
+            >Prioridad</label
+          >
+          <input type="number" class="form-control" name="prioridad" id="field_prioridad" data-cy="prioridad" formControlName="prioridad" />
+          @if (editForm.get('prioridad')!.invalid && (editForm.get('prioridad')!.dirty || editForm.get('prioridad')!.touched)) {
+            <div>
+              @if (editForm.get('prioridad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('prioridad')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.rolFuncionalidad.funcionalidad" for="field_funcionalidad"
+            >Funcionalidad</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionalidad"
+            data-cy="funcionalidad"
+            name="funcionalidad"
+            formControlName="funcionalidad"
+            [compareWith]="compareFuncionalidad"
+          >
+            @if (!editForm.get('funcionalidad')!.value) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionalidadOption of funcionalidadsSharedCollection; track $index) {
+              <option [ngValue]="funcionalidadOption">{{ funcionalidadOption.nombre }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['funcionalidad'])!.invalid && (editForm.get(['funcionalidad'])!.dirty || editForm.get(['funcionalidad'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['funcionalidad'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

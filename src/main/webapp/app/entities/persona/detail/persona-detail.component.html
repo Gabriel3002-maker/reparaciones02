@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (persona) {
+      <div>
+        <h2 data-cy="personaDetailsHeading"><span jhiTranslate="reparacionesApp.persona.detail.title">Persona</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ persona.id }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.persona.identificacion"
+              [ngbTooltip]="'reparacionesApp.persona.help.identificacion' | translate"
+              >Identificacion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.identificacion }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.persona.primerApellido"
+              [ngbTooltip]="'reparacionesApp.persona.help.primerApellido' | translate"
+              >Primer Apellido</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.primerApellido }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.persona.segundoApellido"
+              [ngbTooltip]="'reparacionesApp.persona.help.segundoApellido' | translate"
+              >Segundo Apellido</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.segundoApellido }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.persona.primerNombre" [ngbTooltip]="'reparacionesApp.persona.help.primerNombre' | translate"
+              >Primer Nombre</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.primerNombre }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.persona.segundoNombre"
+              [ngbTooltip]="'reparacionesApp.persona.help.segundoNombre' | translate"
+              >Segundo Nombre</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.segundoNombre }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.persona.celular" [ngbTooltip]="'reparacionesApp.persona.help.celular' | translate"
+              >Celular</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.celular }}</span>
+          </dd>
+          <dt>
+            <span
+              jhiTranslate="reparacionesApp.persona.telefonoConvencional"
+              [ngbTooltip]="'reparacionesApp.persona.help.telefonoConvencional' | translate"
+              >Telefono Convencional</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.telefonoConvencional }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="reparacionesApp.persona.correo" [ngbTooltip]="'reparacionesApp.persona.help.correo' | translate"
+              >Correo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ persona.correo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.persona.tipoIdentificacion">Tipo Identificacion</span></dt>
+          <dd>
+            @if (persona.tipoIdentificacion) {
+              <div>
+                <a [routerLink]="['/catalogo-item', persona.tipoIdentificacion.id, 'view']">{{ persona.tipoIdentificacion.nombre }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.persona.usuario">Usuario</span></dt>
+          <dd>
+            <span>{{ persona.usuario?.login }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/persona', persona.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

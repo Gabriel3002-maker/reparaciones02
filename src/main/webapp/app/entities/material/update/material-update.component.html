@@ -1,0 +1,221 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-material-heading" data-cy="MaterialCreateUpdateHeading" jhiTranslate="reparacionesApp.material.home.createOrEditLabel">
+        Crear o editar Material
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.codigo" for="field_codigo">Codigo</label>
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.valorUnitario" for="field_valorUnitario">Valor Unitario</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valorUnitario"
+            id="field_valorUnitario"
+            data-cy="valorUnitario"
+            formControlName="valorUnitario"
+          />
+          @if (editForm.get('valorUnitario')!.invalid && (editForm.get('valorUnitario')!.dirty || editForm.get('valorUnitario')!.touched)) {
+            <div>
+              @if (editForm.get('valorUnitario')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('valorUnitario')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.stock" for="field_stock">Stock</label>
+          <input type="number" class="form-control" name="stock" id="field_stock" data-cy="stock" formControlName="stock" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.activo" for="field_activo">Activo</label>
+          <input type="checkbox" class="form-check" name="activo" id="field_activo" data-cy="activo" formControlName="activo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.descripcion" for="field_descripcion">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.creadoPor" for="field_creadoPor">Creado Por</label>
+          <input type="text" class="form-control" name="creadoPor" id="field_creadoPor" data-cy="creadoPor" formControlName="creadoPor" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.fechaCreacion" for="field_fechaCreacion">Fecha Creacion</label>
+          <div class="input-group">
+            <input
+              id="field_fechaCreacion"
+              data-cy="fechaCreacion"
+              type="text"
+              class="form-control"
+              name="fechaCreacion"
+              ngbDatepicker
+              #fechaCreacionDp="ngbDatepicker"
+              formControlName="fechaCreacion"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.actualizadoPor" for="field_actualizadoPor"
+            >Actualizado Por</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="actualizadoPor"
+            id="field_actualizadoPor"
+            data-cy="actualizadoPor"
+            formControlName="actualizadoPor"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.fechaModificacion" for="field_fechaModificacion"
+            >Fecha Modificacion</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaModificacion"
+              data-cy="fechaModificacion"
+              type="text"
+              class="form-control"
+              name="fechaModificacion"
+              ngbDatepicker
+              #fechaModificacionDp="ngbDatepicker"
+              formControlName="fechaModificacion"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaModificacionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.categoria" for="field_categoria">Categoria</label>
+          <select
+            class="form-control"
+            id="field_categoria"
+            data-cy="categoria"
+            name="categoria"
+            formControlName="categoria"
+            [compareWith]="compareCatalogoItem"
+          >
+            @if (!editForm.get('categoria')!.value) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (catalogoItemOption of catalogoItemsSharedCollection; track $index) {
+              <option [ngValue]="catalogoItemOption">{{ catalogoItemOption.nombre }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['categoria'])!.invalid && (editForm.get(['categoria'])!.dirty || editForm.get(['categoria'])!.touched)) {
+          <div>
+            @if (editForm.get(['categoria'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.materialDanio" for="field_materialDanio">Material Danio</label>
+          <select
+            class="form-control"
+            id="field_materialDanio"
+            data-cy="materialDanio"
+            name="materialDanio"
+            formControlName="materialDanio"
+            [compareWith]="compareMaterialDanio"
+          >
+            <option [ngValue]="null"></option>
+            @for (materialDanioOption of materialDaniosSharedCollection; track $index) {
+              <option [ngValue]="materialDanioOption">{{ materialDanioOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.material.materialReporteControl" for="field_materialReporteControl"
+            >Material Reporte Control</label
+          >
+          <select
+            class="form-control"
+            id="field_materialReporteControl"
+            data-cy="materialReporteControl"
+            name="materialReporteControl"
+            formControlName="materialReporteControl"
+            [compareWith]="compareMaterialReporteControl"
+          >
+            <option [ngValue]="null"></option>
+            @for (materialReporteControlOption of materialReporteControlsSharedCollection; track $index) {
+              <option [ngValue]="materialReporteControlOption">{{ materialReporteControlOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

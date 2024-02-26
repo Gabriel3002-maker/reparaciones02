@@ -1,0 +1,33 @@
+{
+  "reparacionesApp": {
+    "parametroSistema": {
+      "home": {
+        "title": "Parametro Sistemas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parametro Sistema",
+        "createOrEditLabel": "Create or edit a Parametro Sistema",
+        "notFound": "No Parametro Sistemas found"
+      },
+      "created": "A new Parametro Sistema is created with identifier {{ param }}",
+      "updated": "A Parametro Sistema is updated with identifier {{ param }}",
+      "deleted": "A Parametro Sistema is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parametro Sistema {{ id }}?"
+      },
+      "detail": {
+        "title": "Parametro Sistema"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "codigo": "Codigo",
+      "clase": "Clase",
+      "valor": "Valor",
+      "help": {
+        "nombre": "nombre",
+        "codigo": "codigo",
+        "clase": "clase de java",
+        "valor": "valor"
+      }
+    }
+  }
+}

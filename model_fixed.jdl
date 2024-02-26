@@ -1,0 +1,219 @@
+/**
+ * The Persona entity.
+ * @author Usuario
+ */
+entity Persona {
+    /** identificacion */
+    identificacion String required
+    /** primer apellido*/
+    primerApellido String required
+    /** segundo apellido */
+    segundoApellido String
+    /** primer Nombre */
+    primerNombre String required
+    /** segundo Nombre */
+    segundoNombre String
+    /** celular */
+    celular String
+    /** telefono convencional */
+    telefonoConvencional String
+    /** correo */
+    correo String
+}
+
+/**
+ * The Funcionalidad entity.
+ * @author Usuario
+ */
+entity Funcionalidad {
+    /** nombre */
+    nombre String required
+    /** descripcion */
+    descripcion String
+    /** url */
+    url String maxlength(80)
+    /** activo */
+    activo Boolean required
+    /** icono menu */
+    icono String
+    /** visible */
+    visible Boolean
+}
+
+
+/**
+ * The Catalogo entity.
+ * @author Usuario
+ */
+entity Catalogo {
+    /** nombre */
+    nombre String required
+    /** codigo */
+    codigo String required unique
+    /** descripcion */
+    descripcion String
+}
+
+/**
+ * The CatalogoItem entity.
+ * @author Usuario
+ */
+entity CatalogoItem {
+    /** nombre */
+    nombre String required
+    /** codigo */
+    codigo String required
+    /** descripcion */
+    descripcion String
+    /** catalogo Codigo */
+    catalogoCodigo String required
+    /** activo */
+    activo Boolean
+}
+
+/**
+ * The ParametroSistema entity.
+ * @author Usuario
+ */
+entity ParametroSistema {
+    /** nombre */
+    nombre String required
+    /** codigo */
+    codigo String required unique
+    /** clase de java */
+    clase String required
+    /** valor */
+    valor String required
+}
+
+
+/**
+ * The RolFuncionalidad entity.
+ * @author Usuario
+ */
+entity RolFuncionalidad {
+    /** rol */
+    rol String required
+    /** activo */
+    activo Boolean
+    /** prioridad */
+    prioridad Integer required
+}
+
+entity RegistroDanio {
+  /** codigo */
+    codigo String required
+    /** fecha registro */
+    fecha LocalDate
+    /** fecha inicio */
+    fechaInicio LocalDate
+    /** fecha fin */
+    fechaFin LocalDate
+    /** direccion */
+    direccion String
+    /** parroquia */
+    parroquia String
+    /** barrio */
+    barrio String
+}
+
+entity DetalleDanio {
+    codigo String required
+    descripcionDanio String
+    tecnico String
+    namePerson String
+    direccion String
+    estadoReparacion String
+    observacion String
+}
+
+entity MaterialDanio {
+codigo String
+    cantidadPedida  Integer
+    observacion String
+}
+
+entity Machinery {
+codigo String
+    descripcion String
+    horasTrabajadas Double
+}
+
+entity DetalleReporteDanio {
+    codigo Integer
+    fecha LocalDate
+    contribuyente String
+    direccion String
+    referencia String
+    horasTrabajadas Integer
+    personalResponsable String
+}
+
+entity MaterialReporteControl {
+codigo String
+    cantidadUsada Integer
+    observacion String
+}
+
+entity Material {
+    codigo String
+    nombre String required
+    valorUnitario Double required
+    stock Integer
+    activo Boolean
+    descripcion String
+    creadoPor String
+    fechaCreacion LocalDate
+    actualizadoPor String
+    fechaModificacion LocalDate
+}
+
+entity OrdenBodega {
+    codigo String
+    detalleNecesidad String
+    fecha LocalDate
+}
+
+
+/**
+ * Many to one relationship.
+ */
+relationship ManyToOne {
+    RolFuncionalidad { funcionalidad(nombre) required } to Funcionalidad
+
+    Persona { tipoIdentificacion(nombre) required } to CatalogoItem
+   
+    DetalleDanio { tipoDanio(nombre) required } to CatalogoItem
+   
+    Material { categoria(nombre) required } to CatalogoItem
+   
+    Persona { usuario(login) } to User with builtInEntity
+   
+    RegistroDanio { detalleDanio(codigo) } to DetalleDanio
+   
+    DetalleDanio { materialDanio(codigo) } to MaterialDanio
+   
+    DetalleDanio { maquinaria(codigo) } to Machinery
+
+    Machinery { nombre(nombre) } to CatalogoItem
+   
+    OrdenBodega { receptor(identificacion) } to Persona
+   
+    DetalleDanio { ordenBodega(codigo) } to OrdenBodega
+   
+    DetalleDanio { detalleReporteDanio(codigo) } to DetalleReporteDanio
+
+    DetalleReporteDanio { materialReporte(codigo) } to MaterialReporteControl
+}
+
+/**
+ * One to many relationship.
+ */
+relationship OneToMany {
+    Catalogo{items} to CatalogoItem
+    MaterialDanio{materiales} to Material
+    MaterialReporteControl{materiales} to Material
+    Funcionalidad{hijos} to Funcionalidad{padre}
+}
+
+

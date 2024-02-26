@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240226153324"
+  },
+  "applications": "*",
+  "entityTableName": "material_reporte_control",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cantidadUsada",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "observacion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "MaterialReporteControl",
+  "relationships": [
+    {
+      "otherEntityName": "material",
+      "relationshipName": "materiales",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

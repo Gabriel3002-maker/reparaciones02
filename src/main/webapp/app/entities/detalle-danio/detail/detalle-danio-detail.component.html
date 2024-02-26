@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (detalleDanio) {
+      <div>
+        <h2 data-cy="detalleDanioDetailsHeading"><span jhiTranslate="reparacionesApp.detalleDanio.detail.title">Detalle Danio</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ detalleDanio.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ detalleDanio.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.descripcionDanio">Descripcion Danio</span></dt>
+          <dd>
+            <span>{{ detalleDanio.descripcionDanio }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.tecnico">Tecnico</span></dt>
+          <dd>
+            <span>{{ detalleDanio.tecnico }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.namePerson">Name Person</span></dt>
+          <dd>
+            <span>{{ detalleDanio.namePerson }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ detalleDanio.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.estadoReparacion">Estado Reparacion</span></dt>
+          <dd>
+            <span>{{ detalleDanio.estadoReparacion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.observacion">Observacion</span></dt>
+          <dd>
+            <span>{{ detalleDanio.observacion }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.tipoDanio">Tipo Danio</span></dt>
+          <dd>
+            @if (detalleDanio.tipoDanio) {
+              <div>
+                <a [routerLink]="['/catalogo-item', detalleDanio.tipoDanio.id, 'view']">{{ detalleDanio.tipoDanio.nombre }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.materialDanio">Material Danio</span></dt>
+          <dd>
+            @if (detalleDanio.materialDanio) {
+              <div>
+                <a [routerLink]="['/material-danio', detalleDanio.materialDanio.id, 'view']">{{ detalleDanio.materialDanio.codigo }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.maquinaria">Maquinaria</span></dt>
+          <dd>
+            @if (detalleDanio.maquinaria) {
+              <div>
+                <a [routerLink]="['/machinery', detalleDanio.maquinaria.id, 'view']">{{ detalleDanio.maquinaria.codigo }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.ordenBodega">Orden Bodega</span></dt>
+          <dd>
+            @if (detalleDanio.ordenBodega) {
+              <div>
+                <a [routerLink]="['/orden-bodega', detalleDanio.ordenBodega.id, 'view']">{{ detalleDanio.ordenBodega.codigo }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.detalleDanio.detalleReporteDanio">Detalle Reporte Danio</span></dt>
+          <dd>
+            @if (detalleDanio.detalleReporteDanio) {
+              <div>
+                <a [routerLink]="['/detalle-reporte-danio', detalleDanio.detalleReporteDanio.id, 'view']">{{
+                  detalleDanio.detalleReporteDanio.codigo
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/detalle-danio', detalleDanio.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

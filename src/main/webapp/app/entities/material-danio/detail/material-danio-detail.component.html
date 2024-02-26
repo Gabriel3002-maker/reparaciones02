@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (materialDanio) {
+      <div>
+        <h2 data-cy="materialDanioDetailsHeading"><span jhiTranslate="reparacionesApp.materialDanio.detail.title">Material Danio</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ materialDanio.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialDanio.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ materialDanio.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialDanio.cantidadPedida">Cantidad Pedida</span></dt>
+          <dd>
+            <span>{{ materialDanio.cantidadPedida }}</span>
+          </dd>
+          <dt><span jhiTranslate="reparacionesApp.materialDanio.observacion">Observacion</span></dt>
+          <dd>
+            <span>{{ materialDanio.observacion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/material-danio', materialDanio.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-funcionalidad-heading"
+        data-cy="FuncionalidadCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.funcionalidad.home.createOrEditLabel"
+      >
+        Crear o editar Funcionalidad
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.nombre"
+            for="field_nombre"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.nombre' | translate"
+            >Nombre</label
+          >
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.descripcion"
+            for="field_descripcion"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.descripcion' | translate"
+            >Descripcion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.url"
+            for="field_url"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.url' | translate"
+            >Url</label
+          >
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+          @if (editForm.get('url')!.invalid && (editForm.get('url')!.dirty || editForm.get('url')!.touched)) {
+            <div>
+              @if (editForm.get('url')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }"
+                  >Este campo no puede superar más de 80 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.activo"
+            for="field_activo"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.activo' | translate"
+            >Activo</label
+          >
+          <input type="checkbox" class="form-check" name="activo" id="field_activo" data-cy="activo" formControlName="activo" />
+          @if (editForm.get('activo')!.invalid && (editForm.get('activo')!.dirty || editForm.get('activo')!.touched)) {
+            <div>
+              @if (editForm.get('activo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.icono"
+            for="field_icono"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.icono' | translate"
+            >Icono</label
+          >
+          <input type="text" class="form-control" name="icono" id="field_icono" data-cy="icono" formControlName="icono" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.funcionalidad.visible"
+            for="field_visible"
+            [ngbTooltip]="'reparacionesApp.funcionalidad.help.visible' | translate"
+            >Visible</label
+          >
+          <input type="checkbox" class="form-check" name="visible" id="field_visible" data-cy="visible" formControlName="visible" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.funcionalidad.padre" for="field_padre">Padre</label>
+          <select
+            class="form-control"
+            id="field_padre"
+            data-cy="padre"
+            name="padre"
+            formControlName="padre"
+            [compareWith]="compareFuncionalidad"
+          >
+            <option [ngValue]="null"></option>
+            @for (funcionalidadOption of funcionalidadsSharedCollection; track $index) {
+              <option [ngValue]="funcionalidadOption">{{ funcionalidadOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

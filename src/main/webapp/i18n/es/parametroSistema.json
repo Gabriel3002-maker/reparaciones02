@@ -1,0 +1,33 @@
+{
+  "reparacionesApp": {
+    "parametroSistema": {
+      "home": {
+        "title": "Parametro Sistemas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Parametro Sistema",
+        "createOrEditLabel": "Crear o editar Parametro Sistema",
+        "notFound": "Ningún Parametro Sistemas encontrado"
+      },
+      "created": "Un nuevo Parametro Sistema ha sido creado con el identificador {{ param }}",
+      "updated": "Un Parametro Sistema ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Parametro Sistema ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Parametro Sistema {{ id }}?"
+      },
+      "detail": {
+        "title": "Parametro Sistema"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "codigo": "Codigo",
+      "clase": "Clase",
+      "valor": "Valor",
+      "help": {
+        "nombre": "nombre",
+        "codigo": "codigo",
+        "clase": "clase de java",
+        "valor": "valor"
+      }
+    }
+  }
+}

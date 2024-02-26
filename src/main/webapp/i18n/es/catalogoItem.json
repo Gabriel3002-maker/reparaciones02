@@ -1,0 +1,36 @@
+{
+  "reparacionesApp": {
+    "catalogoItem": {
+      "home": {
+        "title": "Catalogo Items",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Catalogo Item",
+        "createOrEditLabel": "Crear o editar Catalogo Item",
+        "notFound": "Ningún Catalogo Items encontrado"
+      },
+      "created": "Un nuevo Catalogo Item ha sido creado con el identificador {{ param }}",
+      "updated": "Un Catalogo Item ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Catalogo Item ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Catalogo Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Catalogo Item"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "codigo": "Codigo",
+      "descripcion": "Descripcion",
+      "catalogoCodigo": "Catalogo Codigo",
+      "activo": "Activo",
+      "catalogo": "Catalogo",
+      "help": {
+        "nombre": "nombre",
+        "codigo": "codigo",
+        "descripcion": "descripcion",
+        "catalogoCodigo": "catalogo Codigo",
+        "activo": "activo"
+      }
+    }
+  }
+}

@@ -1,0 +1,179 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-registro-danio-heading"
+        data-cy="RegistroDanioCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.registroDanio.home.createOrEditLabel"
+      >
+        Crear o editar Registro Danio
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.codigo"
+            for="field_codigo"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.codigo' | translate"
+            >Codigo</label
+          >
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+          @if (editForm.get('codigo')!.invalid && (editForm.get('codigo')!.dirty || editForm.get('codigo')!.touched)) {
+            <div>
+              @if (editForm.get('codigo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.fecha"
+            for="field_fecha"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.fecha' | translate"
+            >Fecha</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.fechaInicio"
+            for="field_fechaInicio"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.fechaInicio' | translate"
+            >Fecha Inicio</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaInicio"
+              data-cy="fechaInicio"
+              type="text"
+              class="form-control"
+              name="fechaInicio"
+              ngbDatepicker
+              #fechaInicioDp="ngbDatepicker"
+              formControlName="fechaInicio"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaInicioDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.fechaFin"
+            for="field_fechaFin"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.fechaFin' | translate"
+            >Fecha Fin</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaFin"
+              data-cy="fechaFin"
+              type="text"
+              class="form-control"
+              name="fechaFin"
+              ngbDatepicker
+              #fechaFinDp="ngbDatepicker"
+              formControlName="fechaFin"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.direccion"
+            for="field_direccion"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.direccion' | translate"
+            >Direccion</label
+          >
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.parroquia"
+            for="field_parroquia"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.parroquia' | translate"
+            >Parroquia</label
+          >
+          <input type="text" class="form-control" name="parroquia" id="field_parroquia" data-cy="parroquia" formControlName="parroquia" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="reparacionesApp.registroDanio.barrio"
+            for="field_barrio"
+            [ngbTooltip]="'reparacionesApp.registroDanio.help.barrio' | translate"
+            >Barrio</label
+          >
+          <input type="text" class="form-control" name="barrio" id="field_barrio" data-cy="barrio" formControlName="barrio" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.registroDanio.detalleDanio" for="field_detalleDanio">Detalle Danio</label>
+          <select
+            class="form-control"
+            id="field_detalleDanio"
+            data-cy="detalleDanio"
+            name="detalleDanio"
+            formControlName="detalleDanio"
+            [compareWith]="compareDetalleDanio"
+          >
+            <option [ngValue]="null"></option>
+            @for (detalleDanioOption of detalleDaniosSharedCollection; track $index) {
+              <option [ngValue]="detalleDanioOption">{{ detalleDanioOption.codigo }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

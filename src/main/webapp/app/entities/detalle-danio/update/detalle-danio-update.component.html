@@ -1,0 +1,212 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-detalle-danio-heading"
+        data-cy="DetalleDanioCreateUpdateHeading"
+        jhiTranslate="reparacionesApp.detalleDanio.home.createOrEditLabel"
+      >
+        Crear o editar Detalle Danio
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.codigo" for="field_codigo">Codigo</label>
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+          @if (editForm.get('codigo')!.invalid && (editForm.get('codigo')!.dirty || editForm.get('codigo')!.touched)) {
+            <div>
+              @if (editForm.get('codigo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.descripcionDanio" for="field_descripcionDanio"
+            >Descripcion Danio</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descripcionDanio"
+            id="field_descripcionDanio"
+            data-cy="descripcionDanio"
+            formControlName="descripcionDanio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.tecnico" for="field_tecnico">Tecnico</label>
+          <input type="text" class="form-control" name="tecnico" id="field_tecnico" data-cy="tecnico" formControlName="tecnico" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.namePerson" for="field_namePerson">Name Person</label>
+          <input
+            type="text"
+            class="form-control"
+            name="namePerson"
+            id="field_namePerson"
+            data-cy="namePerson"
+            formControlName="namePerson"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.direccion" for="field_direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.estadoReparacion" for="field_estadoReparacion"
+            >Estado Reparacion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="estadoReparacion"
+            id="field_estadoReparacion"
+            data-cy="estadoReparacion"
+            formControlName="estadoReparacion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.observacion" for="field_observacion">Observacion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observacion"
+            id="field_observacion"
+            data-cy="observacion"
+            formControlName="observacion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.tipoDanio" for="field_tipoDanio">Tipo Danio</label>
+          <select
+            class="form-control"
+            id="field_tipoDanio"
+            data-cy="tipoDanio"
+            name="tipoDanio"
+            formControlName="tipoDanio"
+            [compareWith]="compareCatalogoItem"
+          >
+            @if (!editForm.get('tipoDanio')!.value) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (catalogoItemOption of catalogoItemsSharedCollection; track $index) {
+              <option [ngValue]="catalogoItemOption">{{ catalogoItemOption.nombre }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['tipoDanio'])!.invalid && (editForm.get(['tipoDanio'])!.dirty || editForm.get(['tipoDanio'])!.touched)) {
+          <div>
+            @if (editForm.get(['tipoDanio'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.materialDanio" for="field_materialDanio"
+            >Material Danio</label
+          >
+          <select
+            class="form-control"
+            id="field_materialDanio"
+            data-cy="materialDanio"
+            name="materialDanio"
+            formControlName="materialDanio"
+            [compareWith]="compareMaterialDanio"
+          >
+            <option [ngValue]="null"></option>
+            @for (materialDanioOption of materialDaniosSharedCollection; track $index) {
+              <option [ngValue]="materialDanioOption">{{ materialDanioOption.codigo }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.maquinaria" for="field_maquinaria">Maquinaria</label>
+          <select
+            class="form-control"
+            id="field_maquinaria"
+            data-cy="maquinaria"
+            name="maquinaria"
+            formControlName="maquinaria"
+            [compareWith]="compareMachinery"
+          >
+            <option [ngValue]="null"></option>
+            @for (machineryOption of machinerySharedCollection; track $index) {
+              <option [ngValue]="machineryOption">{{ machineryOption.codigo }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.ordenBodega" for="field_ordenBodega">Orden Bodega</label>
+          <select
+            class="form-control"
+            id="field_ordenBodega"
+            data-cy="ordenBodega"
+            name="ordenBodega"
+            formControlName="ordenBodega"
+            [compareWith]="compareOrdenBodega"
+          >
+            <option [ngValue]="null"></option>
+            @for (ordenBodegaOption of ordenBodegasSharedCollection; track $index) {
+              <option [ngValue]="ordenBodegaOption">{{ ordenBodegaOption.codigo }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="reparacionesApp.detalleDanio.detalleReporteDanio" for="field_detalleReporteDanio"
+            >Detalle Reporte Danio</label
+          >
+          <select
+            class="form-control"
+            id="field_detalleReporteDanio"
+            data-cy="detalleReporteDanio"
+            name="detalleReporteDanio"
+            formControlName="detalleReporteDanio"
+            [compareWith]="compareDetalleReporteDanio"
+          >
+            <option [ngValue]="null"></option>
+            @for (detalleReporteDanioOption of detalleReporteDaniosSharedCollection; track $index) {
+              <option [ngValue]="detalleReporteDanioOption">{{ detalleReporteDanioOption.codigo }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "reparacionesApp": {
+    "detalleReporteDanio": {
+      "home": {
+        "title": "Detalle Reporte Danios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Detalle Reporte Danio",
+        "createOrEditLabel": "Create or edit a Detalle Reporte Danio",
+        "notFound": "No Detalle Reporte Danios found"
+      },
+      "created": "A new Detalle Reporte Danio is created with identifier {{ param }}",
+      "updated": "A Detalle Reporte Danio is updated with identifier {{ param }}",
+      "deleted": "A Detalle Reporte Danio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Detalle Reporte Danio {{ id }}?"
+      },
+      "detail": {
+        "title": "Detalle Reporte Danio"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "fecha": "Fecha",
+      "contribuyente": "Contribuyente",
+      "direccion": "Direccion",
+      "referencia": "Referencia",
+      "horasTrabajadas": "Horas Trabajadas",
+      "personalResponsable": "Personal Responsable",
+      "materialReporte": "Material Reporte"
+    }
+  }
+}

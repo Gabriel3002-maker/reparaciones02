@@ -1,0 +1,32 @@
+{
+  "reparacionesApp": {
+    "rolFuncionalidad": {
+      "home": {
+        "title": "Rol Funcionalidads",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rol Funcionalidad",
+        "createOrEditLabel": "Create or edit a Rol Funcionalidad",
+        "notFound": "No Rol Funcionalidads found"
+      },
+      "created": "A new Rol Funcionalidad is created with identifier {{ param }}",
+      "updated": "A Rol Funcionalidad is updated with identifier {{ param }}",
+      "deleted": "A Rol Funcionalidad is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rol Funcionalidad {{ id }}?"
+      },
+      "detail": {
+        "title": "Rol Funcionalidad"
+      },
+      "id": "ID",
+      "rol": "Rol",
+      "activo": "Activo",
+      "prioridad": "Prioridad",
+      "funcionalidad": "Funcionalidad",
+      "help": {
+        "rol": "rol",
+        "activo": "activo",
+        "prioridad": "prioridad"
+      }
+    }
+  }
+}
