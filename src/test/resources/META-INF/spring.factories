@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory = ec.gob.loja.\
+    reparaciones.config.SqlTestContainersSpringContextCustomizerFactory
